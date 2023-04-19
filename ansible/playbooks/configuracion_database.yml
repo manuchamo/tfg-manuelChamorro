@@ -1,0 +1,32 @@
+- name: Configuracion Base de Datos
+  hosts: database
+  become: yes
+  tasks:
+    - name: Check servicio de PostgreSQL
+      ansible.builtin.systemd:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Creacion base de datos aplicacion web
+      ansible.builtin.postgresql_db:
+        name: dogsorcats
+        state: present
+
+    - name: Creacion usuario tfgadmin
+      ansible.builtin.postgresql_user:
+        name: tfgadmin
+        password: tfgdatabase
+        encrypted: yes
+        state: present
+
+    - name: Conceder permisos al usuario tfgadmin sobre base de datos
+      ansible.builtin.postgresql_privs:
+        db: dogsorcats
+        privs: ALL
+        type: database
+        role: tfgadmin
+        state: present
+
+
+

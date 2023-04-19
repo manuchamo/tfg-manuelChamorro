@@ -1,0 +1,14 @@
+- name: Levantar servicio de Nginx en servidores en DMZ
+  hosts: web
+  become: yes
+  tasks:
+    - name: Instalar Nginx
+      ansible.builtin.package:
+        name: nginx
+        state: present
+
+    - name: Asegurar que el servicio de Nginx está en ejecución y habilitado
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: yes

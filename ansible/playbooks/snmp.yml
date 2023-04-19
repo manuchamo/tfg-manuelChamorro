@@ -1,0 +1,14 @@
+- name: Levantar servicio de SNMP en servidores en DMZ
+  hosts: all
+  become: yes
+  tasks:
+    - name: Instalar SNMP
+      ansible.builtin.package:
+        name: snmpd
+        state: present
+
+    - name: Asegurar que el servicio de Nginx está en ejecución y habilitado
+      ansible.builtin.systemd:
+        name: snmpd
+        state: started
+        enabled: yes
