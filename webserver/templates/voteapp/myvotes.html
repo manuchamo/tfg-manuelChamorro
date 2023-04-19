@@ -1,0 +1,54 @@
+{% extends "voteapp/base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<div style="margin-top: 80px;">
+	<div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="{% static 'images/cats.jpg' %}" alt="CATS IMAGE" style="width:100%; height: 300px;" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p style="text-align:center"><b>CATS</b></p>
+        <p style="text-align:center">TOTAL VOTES FOR CATS: {{ cats }}</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="{% static 'images/fusion.jpeg' %}" alt="DRAW IMAGE" style="width:100%; height: 300px;" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p style="text-align:center"><b>DRAW</b></p>
+        <p style="text-align:center">TOTAL VOTES FOR DRAW: {{ tie }}</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container">
+      <img src="{% static 'images/dogs.jpg' %}" onclick="mi_funcion(3)" alt="DOGS IMAGE" style="width:100%; height: 300px" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p style="text-align:center"><b>DOGS</b></p>
+        <p style="text-align:center">TOTAL VOTES FOR DOGS: {{ dogs }}</p>
+      </div>
+    </div>
+  </div>
+  <center>
+  <div style="height: 250px; width: 50%; overflow-y: auto; margin-top: 15px;">
+  	<table>
+        <tr>
+         	<th>Date</th>
+            <th>Vote</th>
+        </tr>
+        {% for vote in votes %}
+        <tr>
+            <td>{{ vote.date }}</td>
+
+            {% if vote.voteType == 1 %}
+            	<td>CATS</td>
+            {% elif vote.voteType == 2 %}
+            	<td>DOGS</td>
+            {% else %}
+            	<td>DRAW</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+</center>
+</div>
+{% endblock content %}
