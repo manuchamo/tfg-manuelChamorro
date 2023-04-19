@@ -36,7 +36,7 @@ SECRET_KEY = 'soqvpv-*%6b9*ah=)(m$--a8dnt8w4)&dbw9^z)fi21t40&6lz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '192.168.1.192', '192.168.200.214', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['0.0.0.0', '192.168.1.192', '10.0.20.10', '10.0.20.20', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -93,7 +93,7 @@ DATABASES = {
         'NAME': 'dogsorcats',
         'USER': 'tfgadmin',
         'PASSWORD': 'tfgdatabase',
-        'HOST': 'localhost',
+        'HOST': '10.0.20.20',
         'PORT': '5432',
     }
 }
@@ -111,7 +111,7 @@ LOGGING = {
         'logstash': {
             'level': 'INFO',
             'class': 'logstash.TCPLogstashHandler',
-            'host': '192.168.1.192',  
+            'host': '10.0.20.10',  
             'port': 5000,  
             'version': 1,
             'message_type': 'logstash',
